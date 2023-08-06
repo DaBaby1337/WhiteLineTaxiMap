@@ -162,4 +162,5 @@ function rollSliderCar(){
     sliderLineCar.style.transform ='translate(-' +countCar*widthCar +'px';
 }
 //slider-cars-end
+    
 
