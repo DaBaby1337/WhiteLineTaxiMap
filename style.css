@@ -1,11 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;1,600&family=Source+Sans+Pro:wght@600;700&display=swap');
- 
-/* .yandex-block{
+[class*="copyrights-pane"] {
+    display: none !important;
+  }
+.yandex-block{
     margin-top: 20px;
-    margin-bottom: 20px;
     display: flex;
     justify-content: center;
-}  */
+    padding-bottom: 50px;
+} 
+.YandexMap{
+    background: url(img/191704_droga_las_promienie_slonca-min_1920x1080-min.jpg) no-repeat;
+    background-size: cover;
+}
+
 html{
     box-sizing: border-box;
 }
@@ -214,7 +221,7 @@ h3{
     position: relative;
     z-index: 1;
 }
-.slogan1{
+.slogan1 ,.sellPrice {
     text-transform: uppercase;
     font-size: 50px;
     font-weight: 900;

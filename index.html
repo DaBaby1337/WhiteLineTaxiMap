@@ -97,7 +97,7 @@ function calculate(routeLength) {
     <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-touch-icon.png"/>
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png"/>
 <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png"/>
-<link rel="manifest" href="img/favicon/site.webmanifest"/>
+<!-- <link rel="manifest" href="img/favicon/site.webmanifest"/> -->
 <link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5"/>
 <link rel="shortcut icon" href="img/favicon/favicon.ico"/>
 <link rel="icon" href="img/favicon/favicon-16x16.png" type="image/x-icon"/>
@@ -105,7 +105,7 @@ function calculate(routeLength) {
 <meta name="msapplication-config" content="img/favicon/browserconfig.xml"/>
 <meta name="theme-color" content="#ffffff"/>
     <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styleMin.css" />
   </head>
   <body>
     <section class="fullMain" id="gomain">
@@ -165,7 +165,7 @@ function calculate(routeLength) {
                             <a href="#auto-park" class="header-link js-scroll">Автопарк</a>
                         </li>
                         <li class="header-item">
-                            <a href="#!" class="header-link js-scroll city-tours-link">City tours</a>
+                            <a href="#MAP" class="header-link js-scroll city-tours-link">Расчет стоимости</a>
                         </li>
                     </ul>
                     <div class="header-nav-close">
@@ -310,13 +310,16 @@ function calculate(routeLength) {
     </section>
      <!-- cards-end -->
      <!-- YandexMap-start -->
-     <section class="YandexMap">
+     <section class="YandexMap" id="MAP">
       <div class="wrapper">
+        <div class="yandex-full">
+        <div class="sellPrice">
+          <h1 style=" text-align: center; padding-top: 20px;">Стоимость поездки</h1>
+        </div>
         <div class="yandex-block">
-          <!-- // -->
-    <div id="map" class="map" style="width: 1000px; height: 500px"></div>
-    <!-- // -->
-          </div>
+          <div id="map" class="map" style="width: 1000px; height: 500px"></div>
+        </div>
+      </div>
     </div>
     </section>
 
@@ -613,6 +616,6 @@ function calculate(routeLength) {
   </div>
 </div>
      <!-- footer-end -->
-    <script src="script.js"></script>
+    <script src="scriptMin.js"></script>
   </body>
 </html>

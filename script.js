@@ -1,9 +1,4 @@
 
-let fixSection=document.querySelector('.city-tours-link');
-fixSection.addEventListener('click',()=>{
-    alert('This section is under development. All our operators and drivers are English-speaking , you can consult on any of the numbers on the website!');
-});
-// header-start
 (function(){
     const header=document.querySelector('.header');
     const wrapper=document.querySelector('.wrapper-header');
