@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=2e8f581c-ccd5-4d33-bc5a-7d58fbf06e9e&lang=ru_RU" type="text/javascript"></script>
+    <script type="text/javascript">
+      ymaps.ready(init);
+function init(){
+     // Стоимость за километр.
+     var DELIVERY_TARIFF = 33;
+     // Минимальная стоимость.
+         MINIMUM_COST = 1000;
+    let myMap = new ymaps.Map('map', {
+        center : [53.22948771078653,50.201084375305086],
+        zoom : 12,
+        controls: []
+    });
+     //Создадим панель маршрутизации.
+     routePanelControl = new ymaps.control.RoutePanel({
+        options: {
+            // Добавим заголовок панели.
+            showHeader: true,
+            title: 'Расчёт Поездки'
+        }
+    }),
+    zoomControl = new ymaps.control.ZoomControl({
+        options: {
+            size: 'small',
+            float: 'none',
+            position: {
+                bottom: 145,
+                right: 10
+            }
+        }
+    });
+// Пользователь сможет построить только автомобильный маршрут.
+routePanelControl.routePanel.options.set({
+    types: {auto: true}
+});
+
+myMap.controls.add(routePanelControl).add(zoomControl);
+
+// Получим ссылку на маршрут.
+routePanelControl.routePanel.getRouteAsync().then(function (route) {
+
+    // Зададим максимально допустимое число маршрутов, возвращаемых мультимаршрутизатором.
+    route.model.setParams({results: 1}, true);
+
+    // Повесим обработчик на событие построения маршрута.
+    route.model.events.add('requestsuccess', function () {
+
+        var activeRoute = route.getActiveRoute();
+        if (activeRoute) {
+            // Получим протяженность маршрута.
+            var length = route.getActiveRoute().properties.get("distance"),
+            // Вычислим стоимость доставки.
+                price = calculate(Math.round(length.value / 1000)),
+            // Создадим макет содержимого балуна маршрута.
+                balloonContentLayout = ymaps.templateLayoutFactory.createClass(
+                    '<span>Расстояние: ' + length.text + '.</span><br/>' +
+                    '<span style="font-weight: bold; font-style: italic">Стоимость Поездки: ' + price + ' р.</span><br/>'+
+                    '<span> Цена предварительная. Окончательную цену уточняйте у диспетчера .</span>');
+            // Зададим этот макет для содержимого балуна.
+            route.options.set('routeBalloonContentLayout', balloonContentLayout);
+            // Откроем балун.
+            activeRoute.balloon.open();
+        }
+    });
+
+});
+// Функция, вычисляющая стоимость доставки.
+function calculate(routeLength) {
+    if (routeLength>100) return Math.max(routeLength * DELIVERY_TARIFF - Math.round(routeLength * DELIVERY_TARIFF*0.15), MINIMUM_COST);
+    else
+    return Math.max(routeLength * DELIVERY_TARIFF, MINIMUM_COST);
+}
+}
+    </script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WhiteLine Taxi Междугороднее такси Самара Аэропорт межгород</title>
+    <meta name="yandex-verification" content="8a6f34b68a1de424" />
+    <meta name="description" content=" Междугороднее такси из Самары и Самарской области в
+любой город, поселок или село. Специализация: междугородние перевозки на
+такси класса комфорт и бизнес. Такси из аэропорта Самара. Трансфер
+Самара аэропорт. Пассажирские перевозки на авто класса комфорт на
+дальние расстояния. Дальнобойное такси межгород Самара."/> 
+    <!-- <meta property="og:title" content="Такси из аэропорта курумоч "/> fix -->
+    <!-- <meta property="og:description" content=""/> -->
+    <meta name="keywords" content="такси из самары,  междугороднее такси, такси межгород, дальнобойное такси,
+такси комфорт,бизнес такси, междугороднее такси Самара,
+такси межгород Самара, такси комфорт Самара,
+вип такси Самара, бизнес такси Самара, аэропорт Самара, аэропорт Самара
+такси, аэропорт Курумоч, аэропорт Курумоч такси, такси из аэропорта
+Самара, такси в аэропорт Самара, трансфер, аэропорт Самара трансфер"/>
+    <meta property="og:image" content="https://sun9-58.userapi.com/c830408/v830408639/17aca4/r7Wp-VepimE.jpg"/>
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-touch-icon.png"/>
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png"/>
+<link rel="manifest" href="img/favicon/site.webmanifest"/>
+<link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5"/>
+<link rel="shortcut icon" href="img/favicon/favicon.ico"/>
+<link rel="icon" href="img/favicon/favicon-16x16.png" type="image/x-icon"/>
+<meta name="msapplication-TileColor" content="#b91d47"/>
+<meta name="msapplication-config" content="img/favicon/browserconfig.xml"/>
+<meta name="theme-color" content="#ffffff"/>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="fullMain" id="gomain">
+      <header class="header">
+        <div class="wrapper-header">
+          <div class="header-triple">
+            <div class="logo">
+              <img src="img/logo-blue-new.svg" alt="WhiteLineLogo" />
+            </div>
+            <div class="nav-and-contacts">
+              <div class="contacts">
+                <a href="mailto:kurumoch-comfort@samara-taxi-airport.ru" target="_blank" class="linkL">
+                <div class="email-contact con">
+                    <img class="imgfix" src="img/email-min.png" alt="message">
+                  <h3>WhiteLine@mail.ru</h3>                 
+                </div>
+              </a>
+              <a href="tel:+79171657433" target="_blank" class="linkL">
+                <div class="number-contact con">
+                    <img class="imgfix" src="img/telephone-call-min.png" alt="telephne">
+                  <h3>+7 917-165-74-33</h3>
+                </div>
+              </a>
+              <a href="https://www.instagram.com/samara.taxi.airport.kurumoch" target="_blank" class="linkL">
+                <div class="instagram-contact con">
+                    <img class="imgfix" src="img/instagram.png" alt="instagram">
+                  <h3>Instagram</h3>
+                </div>
+              </a>
+              <a href="https://tele.click/kruizshops?" target="_blank" class="linkL">
+                <div class="telegram-contact con">
+                    <img class="imgfix" src="img/telegram-min.png" alt="telegram">
+                  <h3>Telegram</h3>
+                </div>
+              </a>
+                <a href="viber://chat?number=+79024120858" target="_blank" class="linkL">
+                <div class="viber-contact con">
+                    <img class="imgfix" src="img/viber-min.png" alt="viber">
+                  <h3>Viber</h3>
+                </div>
+                </a>
+              </div>
+
+              <div class="nav">
+                <nav class="header-nav">
+                    <ul class="header-list">
+                        <li class="header-item">
+                            <a href="#gomain" class="header-link js-scroll">Главная</a>
+                        </li>
+                        <li class="header-item">
+                            <a href="#services" class="header-link js-scroll">Услуги</a>
+                        </li>
+                        <li class="header-item">
+                            <a href="#rate" class="header-link js-scroll">Тарифы</a>
+                        </li>
+                        <li class="header-item">
+                            <a href="#auto-park" class="header-link js-scroll">Автопарк</a>
+                        </li>
+                        <li class="header-item">
+                            <a href="#!" class="header-link js-scroll city-tours-link">City tours</a>
+                        </li>
+                    </ul>
+                    <div class="header-nav-close">
+                      <span class="header-nav-close-line"></span>
+                      <span class="header-nav-close-line"></span>
+                    </div>
+                    <!-- carefull  -->
+                    <div class="contact-dang">
+                      <a href="tel:+79171657433" class="linkL" target="blank">
+                      <p style="color: black;">+7 917-165-74-33</p>
+                       </a>
+                       <div class="icons-media-head">
+
+                         <div class="go-ico viber-go">
+                          <a href="https://skobelkin.ru/viber/79024120858" class="linkL" target="_blank">
+                           <img src="img/premium-icon-viber-3938054-min.png" alt="viber-ico">
+                          </a>
+                         </div>
+
+                         <div class="go-ico WhatsApp-go">
+                           <a href="https://skobelkin.ru/whatsapp/79171657433" class="linkL" target="_blank">
+                          <img src="img/premium-icon-whatsapp-3536445-min.png" alt="WhatsApp-ico">
+                        </a>
+                        </div>
+
+                        <div class="go-ico tm-go">
+                          <a href="https://tele.click/kruizshops?" class="linkL" target="_blank">
+                          <img src="img/premium-icon-telegram-2504941-min.png" alt="tm-ico">
+                        </a>
+                        </div>
+
+                       </div>
+                    </div>
+                </nav>
+                <div class="header-burger burger">
+                  <span class="burger-line burger-line_1"></span>
+                  <span class="burger-line burger-line_2"></span>
+                  <span class="burger-line burger-line_3"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+       <!-- slider-start-->
+       <div class="wrapper">
+        <section class="slider-section" id="slider-section" >
+            <div class="wrapper-slider" id="sliderW-js">
+              <div class="slider">
+                <div class="mcontainer">
+                  <div class="slider-line">
+                    <img src="img/1slider.png" alt="" class="imgs" />
+                    <img src="img/2slider.png" alt="" class="imgs" />
+                    <img src="img/3slider.png" alt="" class="imgs" />
+                  </div>
+                  <div class="buttons">
+                    <button class="slider-back button-slider"></button>
+                    <button class="slider-next button-slider"></button> 
+                  </div>
+                </div>
+              </div>
+          </section>
+        </div>
+          <!-- slider-end-->
+      <!-- slogan-start -->
+      <div class="wrapper">
+      <div class="slogan">
+        <h1 class="slogan1">Комфорт-Быстрота-Вежливый водитель</h1>
+        <h2 class="slogan2">Что еще нужно для переезда (трансфера) в другой город</h2>
+    </div>
+    </div>
+     <!-- slogan-end -->
+     <!-- figurebmw-start -->
+    <section class="cars">
+        <div class="wrapper-cars" style="overflow: hidden;">
+            <figure class="bmw">
+                <figcaption class="desc-bmw">Конечно! Автомобиль класса комфорт</figcaption>
+                <img class="bmw-pic" src="img/bmw-top-min.png" alt="bmws">
+            </figure>
+        </div>
+    </section>
+    <!-- figurebmw-end-->
+    <!-- cards-start -->
+    <section class="cards">
+        <div class="grid-wrapper-cards">
+            <div class="card1 theCard">
+                <div class="card-info">
+                <div class="card-pic">
+                    <img src="img/icons8-tesla-model-x-100-min.png" alt="tesla-ico" class="card-pic-img">
+                </div>
+                <div class="card-desc">
+                    <h4 class="head-card-desc">Автопарк <br> WhiteLine</h4>
+                    <p>Междугороднее такси WhiteLine использует современный и скоростной автопарк для поездок по дорогам России, 
+                        включая просторные и динамичные седаны БМВ, BMW-320, Toyota Camry и другие от среднего до бизнес или VIP класса. 
+                        </p>
+                </div>
+                </div>
+            </div>
+
+            <div class="card2 theCard">
+                <div class="card-info">
+                <div class="card-pic">
+                    <img src="img/icons8-автомойка-100-min.png" alt="wash-car" class="card-pic-img">
+                </div>
+                <div class="card-desc">
+                    <h4 class="head-card-desc">Чистота <br> Автомобилей</h4>
+                    <p>Мы гарантируем, что за вами приедет аккуратный, вежливый водитель на новом, чистом, комфортном автомобиле. 
+                        Только у нас ежемесячная дезинфекция всех воздуховодов автомобилей на импортном оборудовании немецкими средствами.
+                        </p>
+                </div>
+                </div>
+            </div>
+
+            <div class="card3 theCard">
+                <div class="card-info">
+                <div class="card-pic">
+                    <img src="img/icons8-банкноты-100-min.png" alt="dollars" class="card-pic-img">
+                </div>
+                <div class="card-desc">
+                    <h4 class="head-card-desc">Разумные  <br> цены</h4>
+                    <p>Наличный и безналичный расчет, принимаем к оплате банковские карты. При известном маршруте у нас фиксированная цена.
+                         Стоимость проезда легко рассчитать проложив маршрут по картам Яндекс (yandex) или Гугл (Google). 
+                        </p>
+                </div>
+                </div>
+            </div>
+
+            <div class="card4 theCard">
+                <div class="card-info">
+                <div class="card-pic">
+                    <img src="img/icons8-музыка-метал-100-min.png" alt="music" class="card-pic-img">
+                </div>
+                <div class="card-desc">
+                    <h4 class="head-card-desc">Ваша <br> Музыка</h4>
+                    <p>Наши автомобили оснащены системой безопасности ГЛАНАС и системой связи BLUETOOTH, которая позволяет прослушивать на 
+                        акустической системе автомобиля любимые треки с вашего телефона. 
+                        </p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+     <!-- cards-end -->
+     <!-- YandexMap-start -->
+     <section class="YandexMap">
+      <div class="wrapper">
+        <div class="yandex-block">
+          <!-- // -->
+    <div id="map" class="map" style="width: 1000px; height: 500px"></div>
+    <!-- // -->
+          </div>
+    </div>
+    </section>
+
+ <!-- YandexMap-end -->
+<!-- //== -->
+     <!-- our-mission-start -->
+    <section class="our-mission">
+      <div class="wrapper">
+        <div class="mission-block">
+           <div class="slogan-mission">
+              <h1>Наша миссия удовлетворенность  <span style="color:#0E8AB1 ;"> клиентов </span></h1>
+           </div>
+          <div class="mission-ico" >
+            <img src="img/icons8-застенчивый-100.png" alt="">
+           </div>
+          <div class="desc-mission">
+            <h6>Климат-контроль – в жаркое время года и вожделенное тепло – в холодное. Удобные сидения, приятная нейтральная музыка и ненавязчивый собеседник, а также полная исправность машины.
+              Плавный и аккуратный стиль вождения. 
+              На случай дождя в каждой машине есть складной зонтик, чтобы помочь клиенту. Также поможем открыть/закрыть двери, донести/погрузить багаж!
+              В премиальных тарифах в салоне обязательно будет вода для пассажиров это наш стандарт качества.
+              Работаем на постоянного клиента в лице каждого первого
+            </h6>
+          </div>
+          <div class="founder-mission">
+            <div class="name-founder">
+              <h6>Алексей Игоревич</h6>
+            </div>
+            <div class="founder-pic">
+              <img src="img/new-co.png" alt="">
+            </div>
+            <div class="founder-desc">
+              <H6>Генеральный директор и соучередитель</H6>
+            </div>
+          </div>
+      </div>
+      <!-- progress-start -->
+      <div class="progress-grid">
+        <div class="block-progress-1">
+        <div class="pic-progress">
+          <img src="img/icons8-нравится-100-min.png" alt="like">
+        </div>
+        <div class="desc-progress">
+          <h5 class="desc-progress-title"> 753+ </h5>
+          <p> Отзывов</p>
+        </div>
+      </div>
+
+      <div class="block-progress-1">
+        <div class="pic-progress">
+          <img src="img/icons8-люди-в-машине-сбоку-100-min.png" alt="tours">
+        </div>
+        <div class="desc-progress">
+          <h5 class="desc-progress-title"> 538+ </h5>
+          <p>Поездок</p>
+        </div>
+      </div>
+
+      <div class="block-progress-1">
+        <div class="pic-progress">
+          <img src="img/icons8-гараж-100-min.png" alt="garage">
+        </div>
+        <div class="desc-progress">
+          <h5 class="desc-progress-title"> 10+ </h5>
+          <p>Автопарк</p>
+        </div>
+      </div>
+
+      <div class="block-progress-1">
+        <div class="pic-progress">
+          <img src="img/icons8-автоавария-100-min.png" alt="crash">
+        </div>
+        <div class="desc-progress">
+          <h5 class="desc-progress-title"> 0+ </h5>
+          <p>ДТП</p>
+        </div>
+      </div>
+
+      </div>
+      <!-- progress-end -->
+    </div>
+    </section>
+     <!-- our-mission-end -->
+   <!-- slider-cars start -->
+   <section class="slider-cars-section">
+    <div class="title-cars" id="auto-park">
+      <h2>Наш <span style="color: #0E8AB1;">Автопарк</span> </h2>
+    </div>
+   <div class="wrapper-slider-car" >
+     <div class="slider-car">
+       <div class="mcontainer-car">
+         <div class="slider-line-car">
+           <img src="img/Машинка-min.png" alt="" class="imgs-car" />
+           <img src="img/slider-bmw.jpg" alt="" class="imgs-car" />
+           <img src="img/Октавиа.png" alt="" class="imgs-car" />
+         </div>
+         <div class="buttons-car">
+           <button class="slider-back-car button-slider-car"></button>
+           <button class="slider-next-car button-slider-car"></button> 
+         </div>
+       </div>
+     </div>
+   </div>
+  </section>
+  <!-- slider-cars end -->
+     <!-- rate-start -->
+     <section class="rate" id="rate">
+      <div class="wrapper-rate">
+        <div class="rate-grid">
+          <div class="c-rate block-rate">
+            <div class="title-rate">
+              <h3>Автомобили "С" класса комфорт:  Toyota Corolla, Skoda Octavia, Ford Focus</h3>
+            </div>
+            <table class="table-rate">
+              <tr>
+                <th>Тарифы</th> <th>Цена</th>
+              </tr>
+              <tr><td>Аэропорт - Самара</td> <td>1200 рублей</td>
+              </tr> 
+              <tr>
+               <td>Самара - Аэропорт</td> <td>1200 рублей </td>
+              </tr>
+              <tr>
+                <td>Аэропорт - Тольятти</td> <td>1200 рублей</td>
+              </tr>
+              <tr>
+                <td>Тольятти - Аэропорт</td> <td>1200 рублей</td>
+              </tr>
+            </table>
+          </div>
+          <div class="d-rate block-rate">
+            <div class="title-rate">
+              <h3>Автомобили класса "D" и "E", бизнес класс: BMW-320D, Toyota Camry</h3>
+            </div>
+            <table  class="table-rate" >
+              <tr>
+                <th>Тарифы</th> <th>Цена</th>
+              </tr>
+              <tr><td>Аэропорт - Самара</td> <td>1500 рублей</td>
+              </tr> 
+              <tr>
+               <td>Самара - Аэропорт</td> <td>1500 рублей </td>
+              </tr>
+              <tr>
+                <td>Аэропорт - Тольятти</td> <td>1500 рублей</td>
+              </tr>
+              <tr>
+                <td>Тольятти - Аэропорт</td> <td>1500 рублей</td>
+              </tr>
+            </table>
+          </div>
+          <div class="time-rate block-rate">
+            <div class="title-rate">
+              <h3>Повременной <br> тариф: <br>- </h3>
+            </div>
+            <table class="table-rate">
+              <tr>
+                <td>1 час езды в режиме "город"</td> <td>800 рублей</td>
+              </tr>
+              <tr>
+                <td>1 час езды "трасса-город"</td> <td>1000 рублей</td>
+              </tr>
+              <tr>
+                <td>1 час ожидания</td> <td>500 рублей</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="half-price">
+          <h2>
+            Междугородние перевозки - обратно за полцены при возврате в тотже день, 1 час ожидания - БЕСПЛАТНО, далее - 600р. в час. 
+            Индивидуальный подход в расчете стоимости поездки в оба конца с учетом интересов клиента.
+            Индивидуальные скидки постоянным клиентам.
+          </h2>
+        </div>
+        <div class="warranty-yandex-price">
+          <h2 class="title-yandex"> Гарантия лучшей цены </h2>
+          <h3 class="desc-yandex">Нашли такси дешевле ? Снизим цену на 10%</h3>
+        </div>
+      </div>
+     </section>
+      <!-- rate-end -->
+      <!-- !services-start -->
+      <section class="services" id="services">
+        <div class="wrapper">
+          <div class="title-services">
+            <h2>Наши <span style="color: #0E8AB1;"> Услуги </span></h2>
+          </div>
+          <div class="cards-service">
+
+            <div class="card-service">
+              <div class="pic-service">
+                <img src="img/premium-icon-baby-car-seat-3586042-min.png" alt="child-safety-seat">
+              </div>
+              <div class="desc-service">Детское кресло</div>
+            </div>
+
+            <div class="card-service">
+              <div class="pic-service">
+                <img src="img/free-icon-minivan-198337-min.png" alt="minivan">
+              </div>
+              <div class="desc-service">Аренда минивена</div>
+            </div>
+          </div>
+
+          <div class="card-service">
+            <div class="pic-service">
+              <img src="img/taxi-driver-min.png" alt="taxi-driver">
+            </div>
+            <div class="desc-service">Встреча с табличкой</div>
+          </div>
+ 
+          <div class="card-service">
+            <div class="pic-service">
+              <img src="img/premium-icon-credit-card-4304634-min.png" alt="child-safety-seat">
+            </div>
+            <div class="desc-service">Квитанции Чеки (БСО)</div>
+          </div>
+
+        </div>
+      </section>
+      <!-- !services-start -->
+<!-- warranty-start -->
+     <section class="warranty">
+       <div class="wrapper">
+        <div class="title-warranty">
+          <h3>Любые муждугородние направления <span style="color: #0E8AB1;"> no limit</span> </h3>
+        </div>
+        <div class="desc-warranty">
+          <p>Междугорднее такси «Самара-Такси-Аэропорт» предлагает быстро, недорого и комфортно добраться на такси из из Самары, 
+            Тольятти и любого населенного пункта Самарской области в любой город или насленный пункт России, стран СНГ, ближнего и дальнего зарубежья и обратно.
+             Междугордние перевозки из Самары – наша специализация.
+            Поездки по межгороду из Самары обеспечивают высококвалифицированные водители на динамичных автомобилях класса комфорт и бизнес.
+             Нас не пугают дальние расстояния и у нас нет огранициний ни по километражу, ни по направлению междугородней поездки.</p>
+        </div>
+        <div class="button-warranty">
+          <a href="tel:+79171657433"  target="_blank" class="linkL">
+            <p class="link-warranty">+7 917-165-74-33</p>
+          </a>
+        </div>
+      </div>
+     </section>
+    <!-- warranty-end -->
+    <!-- footer-start -->
+    <div class="footer">
+    <div class="wrapper">
+    <div class="footer-block">
+      <div class="left-footer">
+        <div class="logo-footer">
+          <a href="#slider-section">
+          <img src="img/logo-footer-min.png" alt="WhiteLine">
+          </a>
+        </div>
+        <div class="socite-footer">
+          <div class="flex-footer">
+            <div class="page1">
+          <div class="title-socite">Мы в соцсетях</div>
+          <div class="icons-sosite">
+            <a href="https://www.instagram.com/samara.taxi.airport.kurumoch" target="_blank" class="footer-link" >
+            <img src="img/icons8-instagram-старый-50.png" alt="icon-instagram">
+             </a>
+             <a href="https://vk.com/samara_taxi_airport_kurumoch" target="_blank" class="footer-link">
+            <img src="img/icons8-вконтакте-50.png" alt="icon-vk">
+            </a>
+            <a href="https://ok.ru/group/samara.taxi.airport.kurumoch" target="_blank" class="footer-link">
+            <img src="img/icons8-одноклассники-50.png" alt="icon-classmates">
+            </a>
+            <a href="https://twitter.com/samara_aerotaxi" target="_blank" class="footer-link">
+            <img src="img/icons8-twitter-в-квадрате-50.png" alt="icon-tviter">
+             </a>
+             <a href="https://www.facebook.com/groups/samara.taxi.airport.kurumoch" target="_blank" class="footer-link">
+            <img src="img/icons8-facebook-50.png" alt="icon-facebook">
+             </a>
+          </div>
+        </div>
+          <div class="right-footer-flex">
+            <div class="number-footer">
+              <a href="https://skobelkin.ru/whatsapp/79171657433" class="footer-link" target="_blank">
+              <p>WhatsApp:+7 (917) 165 74 33</p>
+              <a href="https://skobelkin.ru/viber/79024120858" class="footer-link" target="_blank">
+              <p>Viber: +7 (902) 412 08 58</p>
+            </a>
+            </div>
+            <div class="adress-footer">
+              Междугороднее такси "WhiteLine", г. Самара, ул. Ново-Садовая 106а.
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="mail-footer">
+          <a href="mailto:kurumoch-comfort@samara-taxi-airport.ru" class="mail-footer-a">kurumoch-comfort@samara-taxi-airport.ru</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+     <!-- footer-end -->
+    <script src="script.js"></script>
+  </body>
+</html>
